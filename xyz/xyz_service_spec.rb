@@ -1,9 +1,12 @@
+require 'minitest/spec'
+require 'minitest/autorun'
+require 'hashie'
 require_relative './xyz_service'
 require 'date'
 
 describe XYZService do
 
-  let(:target) do
+  before do
     messages = {
       :publish_on => Date.new(2012, 3, 14),
       :xyz_category_prefix => 'abc',
@@ -12,13 +15,13 @@ describe XYZService do
       :id => 1337,
       :title => 'magic & superglue'
     }
-    stub(:target, messages)
+    target = Hashie::Mash.new messages
+    
+    @subject = XYZService.xyz_filename(target)
   end
 
-  subject { XYZService.xyz_filename(target) }
-
   it 'works' do
-    subject.should eq('14abcunicorn_1337_cb6c53bc_magicsuper.jpg')
+    @subject.must_equal '14abcunicorn_1337_cb6c53bc_magicsuper.jpg'
   end
 
 end

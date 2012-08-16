@@ -1,3 +1,5 @@
+require 'openssl'
+
 module XYZService
 
   def self.xyz_filename(target)
