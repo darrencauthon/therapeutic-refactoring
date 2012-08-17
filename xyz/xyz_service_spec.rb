@@ -1,6 +1,7 @@
 require 'minitest/spec'
 require 'minitest/autorun'
 require 'hashie'
+require 'mocha'
 require_relative './xyz_service'
 require 'date'
 
@@ -16,12 +17,15 @@ describe XYZService do
       :title => 'magic & superglue'
     }
     target = Hashie::Mash.new messages
+
+    XYZService.expects(:rand).with(10000).returns(4321)
+    Digest::SHA1.expects(:hexdigest).with('4321').returns('abcdefghijklmnop')
     
     @subject = XYZService.xyz_filename(target)
   end
 
   it 'works' do
-    @subject.must_equal '14abcunicorn_1337_cb6c53bc_magicsuper.jpg'
+    @subject.must_equal '14abcunicorn_1337_abcdefgh_magicsuper.jpg'
   end
 
 end
