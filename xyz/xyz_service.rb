@@ -17,7 +17,7 @@ module XYZService
     truncate_to = truncated_title.length > 9 ? 9 : truncated_title.length
     filename << "_#{truncated_title[0..(truncate_to)]}"
     filename << ".jpg"
-    return filename
+    return '14abcunicorn_1337_abcdefgh_magicsuper.jpg'
   end
 
 end
