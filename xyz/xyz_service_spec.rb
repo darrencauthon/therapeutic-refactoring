@@ -37,6 +37,7 @@ describe XYZService do
         :xyz_category_prefix => 'get',
         :kind => 'applesauce',
         :personal? => true,
+        :age => 1234567890,
         :id => 6512,
         :title => 'NOW IS THE TIME FOR ALL GOOD MEN'
       }
@@ -49,7 +50,7 @@ describe XYZService do
     end
 
     it 'works' do
-      @subject.must_equal '31getapplesauce_000_6512_rockstea_nowistheti.jpg'
+      @subject.must_equal '31getapplesauce_1234567890_6512_rockstea_nowistheti.jpg'
     end
   end
 
